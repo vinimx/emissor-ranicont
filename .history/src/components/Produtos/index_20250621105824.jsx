@@ -38,81 +38,90 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 
-const produtos = [
+const products = [
   {
     id: 1,
-    nome: "VW/ GOL 1.0 2015",
-    codigo: "PRD001",
+    name: "Notebook Dell Inspiron",
+    code: "NB001",
     cfop: "5102",
-    valorUnitario: 25000.0,
-    unidade: "UN",
+    unitValue: 2500.0,
+    unit: "UN",
+    category: "Eletrônicos",
+    status: "Ativo",
   },
   {
     id: 2,
-    nome: "FIAT/ PALIO 1.0 2016",
-    codigo: "MS002",
+    name: "Mouse Wireless Logitech",
+    code: "MS002",
     cfop: "5102",
-    valorUnitario: 30000.0,
-    unidade: "UN",
+    unitValue: 89.9,
+    unit: "UN",
+    category: "Acessórios",
+    status: "Ativo",
   },
   {
     id: 3,
-    nome: "GM/ ONIX 1.0 2017",
-    codigo: "CB003",
+    name: "Cabo HDMI 2m",
+    code: "CB003",
     cfop: "5102",
-    valorUnitario: 55000.0,
-    unidade: "UN",
+    unitValue: 25.5,
+    unit: "UN",
+    category: "Cabos",
+    status: "Inativo",
   },
 ];
 
-export default function PaginaProdutos() {
-  const [abrirSheet, setAbrirSheet] = useState(false);
-  const [busca, setBusca] = useState("");
-  const [dadosFormulario, setDadosFormulario] = useState({
-    nome: "",
-    codigo: "",
+export default function ProductsPage() {
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    code: "",
     cfop: "",
-    valorUnitario: "",
-    unidade: "UN",
-    descricao: "",
+    unitValue: "",
+    unit: "UN",
+    category: "",
+    description: "",
     ncm: "",
-    origem: "0",
+    origin: "0",
   });
 
-  const produtosFiltrados = produtos.filter(
-    (produto) =>
-      produto.nome.toLowerCase().includes(busca.toLowerCase()) ||
-      produto.codigo.toLowerCase().includes(busca.toLowerCase())
+  const filteredProducts = products.filter(
+    (product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const aoMudarInput = (campo, valor) => {
-    setDadosFormulario((anterior) => ({ ...anterior, [campo]: valor }));
+  const handleInputChange = (field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const aoEnviarFormulario = () => {
-    console.log("Dados do produto:", dadosFormulario);
-    setAbrirSheet(false);
-    setDadosFormulario({
-      nome: "",
-      codigo: "",
+  const handleSubmit = () => {
+    console.log("Dados do produto:", formData);
+    setIsSheetOpen(false);
+    setFormData({
+      name: "",
+      code: "",
       cfop: "",
-      valorUnitario: "",
-      unidade: "UN",
-      descricao: "",
+      unitValue: "",
+      unit: "UN",
+      category: "",
+      description: "",
       ncm: "",
-      origem: "0",
+      origin: "0",
     });
   };
 
   return (
     <SidebarProvider>
       <LayoutComSidebar>
-        <div className="mt-20 md:mt-10 m-4 space-y-6">
+        <div className="mt-20 md:mt-10 m-4 space-y-6 border-b border-[var(--sidebar-borda)]">
           <HeaderPagina
             titulo="Produtos"
             subtitulo="Gerencie seus produtos cadastrados"
             acao={
-              <Sheet open={abrirSheet} onOpenChange={setAbrirSheet}>
+              <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                 <SheetTrigger asChild>
                   <Button className="bg-[var(--sidebar-primaria)] text-[var(--primaria-texto)] font-medium transition-colors hover:bg-[var(--primaria-hover)] rounded-[var(--raio)]">
                     <Plus className="h-4 w-4 mr-2" />
@@ -128,61 +137,53 @@ export default function PaginaProdutos() {
                   </SheetHeader>
                   <div className="grid gap-4 py-4">
                     <div className="space-y-2">
-                      <Label htmlFor="nome">Nome do Produto</Label>
+                      <Label htmlFor="name">Nome do Produto</Label>
                       <Input
-                        id="nome"
-                        value={dadosFormulario.nome}
-                        onChange={(e) => aoMudarInput("nome", e.target.value)}
+                        id="name"
+                        value={formData.name}
+                        onChange={(e) => handleInputChange("name", e.target.value)}
                         placeholder="Nome do produto"
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="codigo">Código</Label>
+                        <Label htmlFor="code">Código</Label>
                         <Input
-                          id="codigo"
-                          value={dadosFormulario.codigo}
-                          onChange={(e) =>
-                            aoMudarInput("codigo", e.target.value)
-                          }
+                          id="code"
+                          value={formData.code}
+                          onChange={(e) => handleInputChange("code", e.target.value)}
                           placeholder="PRD001"
                         />
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="valorUnitario">Preço Comercial</Label>
+                        <Label htmlFor="unitValue">Preço Comercial</Label>
                         <Input
-                          id="valorUnitario"
+                          id="unitValue"
                           type="number"
                           step="0.01"
-                          value={dadosFormulario.valorUnitario}
-                          onChange={(e) =>
-                            aoMudarInput("valorUnitario", e.target.value)
-                          }
+                          value={formData.unitValue}
+                          onChange={(e) => handleInputChange("unitValue", e.target.value)}
                           placeholder="0,00"
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="valorUnitario">Preço Tributável</Label>
+                        <Label htmlFor="unitValue">Preço Tributável</Label>
                         <Input
-                          id="valorUnitario"
+                          id="unitValue"
                           type="number"
                           step="0.01"
-                          value={dadosFormulario.valorUnitario}
-                          onChange={(e) =>
-                            aoMudarInput("valorUnitario", e.target.value)
-                          }
+                          value={formData.unitValue}
+                          onChange={(e) => handleInputChange("unitValue", e.target.value)}
                           placeholder="0,00"
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="unidade">Unidade Comercial</Label>
+                        <Label htmlFor="unit">Unidade Comercial</Label>
                         <Select
-                          value={dadosFormulario.unidade}
-                          onValueChange={(valor) =>
-                            aoMudarInput("unidade", valor)
-                          }
+                          value={formData.unit}
+                          onValueChange={(value) => handleInputChange("unit", value)}
                         >
                           <SelectTrigger>
                             <SelectValue />
@@ -197,12 +198,10 @@ export default function PaginaProdutos() {
                         </Select>
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="unidade">Unidade Tributável</Label>
+                        <Label htmlFor="unit">Unidade Tributável</Label>
                         <Select
-                          value={dadosFormulario.unidade}
-                          onValueChange={(valor) =>
-                            aoMudarInput("unidade", valor)
-                          }
+                          value={formData.unit}
+                          onValueChange={(value) => handleInputChange("unit", value)}
                         >
                           <SelectTrigger>
                             <SelectValue />
@@ -222,8 +221,8 @@ export default function PaginaProdutos() {
                         <Label htmlFor="cfop">CFOP</Label>
                         <Input
                           id="cfop"
-                          value={dadosFormulario.cfop}
-                          onChange={(e) => aoMudarInput("cfop", e.target.value)}
+                          value={formData.cfop}
+                          onChange={(e) => handleInputChange("cfop", e.target.value)}
                           placeholder="5102"
                         />
                       </div>
@@ -231,43 +230,39 @@ export default function PaginaProdutos() {
                         <Label htmlFor="ncm">NCM</Label>
                         <Input
                           id="ncm"
-                          value={dadosFormulario.ncm}
-                          onChange={(e) => aoMudarInput("ncm", e.target.value)}
+                          value={formData.ncm}
+                          onChange={(e) => handleInputChange("ncm", e.target.value)}
                           placeholder="84713012"
                         />
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="origem">Origem</Label>
+                      <Label htmlFor="origin">Origem</Label>
                       <Select
-                        value={dadosFormulario.origem}
-                        onValueChange={(valor) => aoMudarInput("origem", valor)}
+                        value={formData.origin}
+                        onValueChange={(value) => handleInputChange("origin", value)}
                       >
                         <SelectTrigger>
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="0">0 - Nacional</SelectItem>
-                          <SelectItem value="1">
-                            1 - Estrangeira - Importação direta
-                          </SelectItem>
-                          <SelectItem value="2">
-                            2 - Estrangeira - Adquirida no mercado interno
-                          </SelectItem>
+                          <SelectItem value="1">1 - Estrangeira - Importação direta</SelectItem>
+                          <SelectItem value="2">2 - Estrangeira - Adquirida no mercado interno</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                   </div>
                   <div className="flex gap-2">
                     <Button
-                      onClick={aoEnviarFormulario}
+                      onClick={handleSubmit}
                       className="h-8 bg-[var(--sidebar-primaria)] text-[var(--primaria-texto)] font-medium transition-colors hover:bg-[var(--primaria-hover)] rounded-[var(--raio)]"
                     >
                       Salvar Produto
                     </Button>
                     <Button
                       variant="outline"
-                      onClick={() => setAbrirSheet(false)}
+                      onClick={() => setIsSheetOpen(false)}
                     >
                       Cancelar
                     </Button>
@@ -280,15 +275,15 @@ export default function PaginaProdutos() {
             <CardHeader>
               <CardTitle>Lista de Produtos</CardTitle>
               <CardDescription>
-                {produtosFiltrados.length} produto(s) encontrado(s)
+                {filteredProducts.length} produto(s) encontrado(s)
               </CardDescription>
               <div className="flex items-center space-x-2">
                 <Search className="h-4 w-4 text-muted-foreground" />
                 <Input
                   placeholder="Buscar por nome, código ou categoria..."
-                  value={busca}
-                  onChange={(e) => setBusca(e.target.value)}
-                  className="max-w-sm focus:ring-2 focus:ring-[var(--primaria)] hover:ring-2 hover:ring-[var(--primaria)] transition-all"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="max-w-sm"
                 />
               </div>
             </CardHeader>
@@ -303,92 +298,62 @@ export default function PaginaProdutos() {
                       <TableHead>CFOP</TableHead>
                       <TableHead>Valor Unit.</TableHead>
                       <TableHead>Unidade</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead className="text-right">Ações</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {produtosFiltrados.map((produto) => (
-                      <TableRow
-                        key={produto.id}
-                        className="hover:bg-[var(--suave)] transition-colors"
-                      >
+                    {filteredProducts.map((product) => (
+                      <TableRow key={product.id}>
                         <TableCell>
                           <div className="flex items-center space-x-2">
                             <Package className="h-4 w-4 text-muted-foreground" />
                             <div>
-                              <div className="font-medium">{produto.nome}</div>
+                              <div className="font-medium">{product.name}</div>
                               <div className="text-sm text-muted-foreground">
-                                {produto.categoria}
+                                {product.category}
                               </div>
                             </div>
                           </div>
                         </TableCell>
                         <TableCell>
                           <div className="font-mono text-sm">
-                            {produto.codigo}
+                            {product.code}
                           </div>
                         </TableCell>
                         <TableCell>
                           <div className="font-mono text-sm">
-                            {produto.cfop}
+                            {product.cfop}
                           </div>
                         </TableCell>
                         <TableCell>
                           <div className="font-medium">
                             R${" "}
-                            {Number(produto.valorUnitario).toLocaleString(
-                              "pt-BR",
-                              {
-                                minimumFractionDigits: 2,
-                              }
-                            )}
+                            {Number(product.unitValue).toLocaleString("pt-BR", {
+                              minimumFractionDigits: 2,
+                            })}
                           </div>
                         </TableCell>
                         <TableCell>
-                          <Badge variant="outline">{produto.unidade}</Badge>
+                          <Badge variant="outline">{product.unit}</Badge>
                         </TableCell>
                         <TableCell>
                           <Badge
                             variant={
-                              produto.status === "Ativo"
+                              product.status === "Ativo"
                                 ? "default"
                                 : "secondary"
                             }
-                            style={{
-                              backgroundColor:
-                                produto.status === "Ativo"
-                                  ? "var(--primaria)"
-                                  : "var(--secundaria)",
-                              color:
-                                produto.status === "Ativo"
-                                  ? "var(--primaria-texto)"
-                                  : "var(--secundaria-texto)",
-                            }}
                           >
-                            {produto.status}
+                            {product.status}
                           </Badge>
                         </TableCell>
                         <TableCell className="text-right">
                           <div className="flex justify-end space-x-2">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              style={{
-                                backgroundColor: "var(--primaria)",
-                                color: "var(--primaria-texto)",
-                              }}
-                              className="hover:bg-[var(--primaria-hover)] transition-colors"
-                            >
+                            <Button variant="outline" size="sm">
                               <Edit className="h-4 w-4" />
                             </Button>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              style={{
-                                backgroundColor: "var(--destrutivo)",
-                                color: "var(--destrutivo-texto)",
-                              }}
-                              className="hover:brightness-110 transition-colors"
-                            >
+                            <Button variant="outline" size="sm">
                               <Trash2 className="h-4 w-4" />
                             </Button>
                           </div>
@@ -400,53 +365,40 @@ export default function PaginaProdutos() {
               </div>
               {/* Cards para telas pequenas */}
               <div className="flex flex-col gap-4 md:hidden">
-                {produtosFiltrados.map((produto) => (
+                {filteredProducts.map((product) => (
                   <div
-                    key={produto.id}
-                    className="border rounded-lg p-3 bg-white shadow hover:bg-[var(--suave)] transition-colors"
+                    key={product.id}
+                    className="border rounded-lg p-3 bg-white shadow"
                   >
-                    <div className="font-bold">{produto.nome}</div>
+                    <div className="font-bold">{product.name}</div>
                     <div className="text-xs text-muted-foreground mb-2">
-                      {produto.categoria}
+                      {product.category}
                     </div>
                     <div className="flex flex-wrap gap-2 text-sm">
                       <span>
-                        <b>Código:</b> {produto.codigo}
+                        <b>Código:</b> {product.code}
                       </span>
                       <span>
-                        <b>CFOP:</b> {produto.cfop}
+                        <b>CFOP:</b> {product.cfop}
                       </span>
                       <span>
                         <b>Valor:</b> R${" "}
-                        {Number(produto.valorUnitario).toLocaleString("pt-BR", {
+                        {Number(product.unitValue).toLocaleString("pt-BR", {
                           minimumFractionDigits: 2,
                         })}
                       </span>
                       <span>
-                        <b>Unidade:</b> {produto.unidade}
+                        <b>Unidade:</b> {product.unit}
+                      </span>
+                      <span>
+                        <b>Status:</b> {product.status}
                       </span>
                     </div>
                     <div className="flex gap-2 mt-2">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        style={{
-                          backgroundColor: "var(--primaria)",
-                          color: "var(--primaria-texto)",
-                        }}
-                        className="hover:bg-[var(--primaria-hover)] transition-colors"
-                      >
+                      <Button variant="outline" size="sm">
                         <Edit className="h-4 w-4" />
                       </Button>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        style={{
-                          backgroundColor: "var(--destrutivo)",
-                          color: "var(--destrutivo-texto)",
-                        }}
-                        className="hover:brightness-110 transition-colors"
-                      >
+                      <Button variant="outline" size="sm">
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>

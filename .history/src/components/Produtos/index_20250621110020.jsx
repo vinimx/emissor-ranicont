@@ -41,27 +41,29 @@ import { Badge } from "@/components/ui/badge";
 const produtos = [
   {
     id: 1,
-    nome: "VW/ GOL 1.0 2015",
-    codigo: "PRD001",
+    nome: "Notebook Dell Inspiron",
+    codigo: "NB001",
     cfop: "5102",
-    valorUnitario: 25000.0,
+    valorUnitario: 2500.0,
     unidade: "UN",
   },
   {
     id: 2,
-    nome: "FIAT/ PALIO 1.0 2016",
+    nome: "Mouse Wireless Logitech",
     codigo: "MS002",
     cfop: "5102",
-    valorUnitario: 30000.0,
+    valorUnitario: 89.9,
     unidade: "UN",
   },
   {
     id: 3,
-    nome: "GM/ ONIX 1.0 2017",
+    nome: "Cabo HDMI 2m",
     codigo: "CB003",
     cfop: "5102",
-    valorUnitario: 55000.0,
+    valorUnitario: 25.5,
     unidade: "UN",
+    categoria: "Cabos",
+    status: "Inativo",
   },
 ];
 
@@ -74,6 +76,7 @@ export default function PaginaProdutos() {
     cfop: "",
     valorUnitario: "",
     unidade: "UN",
+    categoria: "",
     descricao: "",
     ncm: "",
     origem: "0",
@@ -82,7 +85,8 @@ export default function PaginaProdutos() {
   const produtosFiltrados = produtos.filter(
     (produto) =>
       produto.nome.toLowerCase().includes(busca.toLowerCase()) ||
-      produto.codigo.toLowerCase().includes(busca.toLowerCase())
+      produto.codigo.toLowerCase().includes(busca.toLowerCase()) ||
+      produto.categoria.toLowerCase().includes(busca.toLowerCase())
   );
 
   const aoMudarInput = (campo, valor) => {
@@ -98,6 +102,7 @@ export default function PaginaProdutos() {
       cfop: "",
       valorUnitario: "",
       unidade: "UN",
+      categoria: "",
       descricao: "",
       ncm: "",
       origem: "0",
@@ -107,7 +112,7 @@ export default function PaginaProdutos() {
   return (
     <SidebarProvider>
       <LayoutComSidebar>
-        <div className="mt-20 md:mt-10 m-4 space-y-6">
+        <div className="mt-20 md:mt-10 m-4 space-y-6 border-b border-[var(--sidebar-borda)]">
           <HeaderPagina
             titulo="Produtos"
             subtitulo="Gerencie seus produtos cadastrados"
@@ -288,7 +293,7 @@ export default function PaginaProdutos() {
                   placeholder="Buscar por nome, código ou categoria..."
                   value={busca}
                   onChange={(e) => setBusca(e.target.value)}
-                  className="max-w-sm focus:ring-2 focus:ring-[var(--primaria)] hover:ring-2 hover:ring-[var(--primaria)] transition-all"
+                  className="max-w-sm"
                 />
               </div>
             </CardHeader>
@@ -303,14 +308,13 @@ export default function PaginaProdutos() {
                       <TableHead>CFOP</TableHead>
                       <TableHead>Valor Unit.</TableHead>
                       <TableHead>Unidade</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead className="text-right">Ações</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {produtosFiltrados.map((produto) => (
-                      <TableRow
-                        key={produto.id}
-                        className="hover:bg-[var(--suave)] transition-colors"
-                      >
+                      <TableRow key={produto.id}>
                         <TableCell>
                           <div className="flex items-center space-x-2">
                             <Package className="h-4 w-4 text-muted-foreground" />
@@ -353,42 +357,16 @@ export default function PaginaProdutos() {
                                 ? "default"
                                 : "secondary"
                             }
-                            style={{
-                              backgroundColor:
-                                produto.status === "Ativo"
-                                  ? "var(--primaria)"
-                                  : "var(--secundaria)",
-                              color:
-                                produto.status === "Ativo"
-                                  ? "var(--primaria-texto)"
-                                  : "var(--secundaria-texto)",
-                            }}
                           >
                             {produto.status}
                           </Badge>
                         </TableCell>
                         <TableCell className="text-right">
                           <div className="flex justify-end space-x-2">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              style={{
-                                backgroundColor: "var(--primaria)",
-                                color: "var(--primaria-texto)",
-                              }}
-                              className="hover:bg-[var(--primaria-hover)] transition-colors"
-                            >
+                            <Button variant="outline" size="sm">
                               <Edit className="h-4 w-4" />
                             </Button>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              style={{
-                                backgroundColor: "var(--destrutivo)",
-                                color: "var(--destrutivo-texto)",
-                              }}
-                              className="hover:brightness-110 transition-colors"
-                            >
+                            <Button variant="outline" size="sm">
                               <Trash2 className="h-4 w-4" />
                             </Button>
                           </div>
@@ -403,7 +381,7 @@ export default function PaginaProdutos() {
                 {produtosFiltrados.map((produto) => (
                   <div
                     key={produto.id}
-                    className="border rounded-lg p-3 bg-white shadow hover:bg-[var(--suave)] transition-colors"
+                    className="border rounded-lg p-3 bg-white shadow"
                   >
                     <div className="font-bold">{produto.nome}</div>
                     <div className="text-xs text-muted-foreground mb-2">
@@ -425,28 +403,15 @@ export default function PaginaProdutos() {
                       <span>
                         <b>Unidade:</b> {produto.unidade}
                       </span>
+                      <span>
+                        <b>Status:</b> {produto.status}
+                      </span>
                     </div>
                     <div className="flex gap-2 mt-2">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        style={{
-                          backgroundColor: "var(--primaria)",
-                          color: "var(--primaria-texto)",
-                        }}
-                        className="hover:bg-[var(--primaria-hover)] transition-colors"
-                      >
+                      <Button variant="outline" size="sm">
                         <Edit className="h-4 w-4" />
                       </Button>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        style={{
-                          backgroundColor: "var(--destrutivo)",
-                          color: "var(--destrutivo-texto)",
-                        }}
-                        className="hover:brightness-110 transition-colors"
-                      >
+                      <Button variant="outline" size="sm">
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>

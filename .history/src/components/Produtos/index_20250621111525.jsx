@@ -107,7 +107,7 @@ export default function PaginaProdutos() {
   return (
     <SidebarProvider>
       <LayoutComSidebar>
-        <div className="mt-20 md:mt-10 m-4 space-y-6">
+        <div className="mt-20 md:mt-10 m-4 space-y-6 border-b border-[var(--sidebar-borda)]">
           <HeaderPagina
             titulo="Produtos"
             subtitulo="Gerencie seus produtos cadastrados"
@@ -372,10 +372,7 @@ export default function PaginaProdutos() {
                             <Button
                               variant="outline"
                               size="sm"
-                              style={{
-                                backgroundColor: "var(--primaria)",
-                                color: "var(--primaria-texto)",
-                              }}
+                              style={{ backgroundColor: "var(--primaria)", color: "var(--primaria-texto)" }}
                               className="hover:bg-[var(--primaria-hover)] transition-colors"
                             >
                               <Edit className="h-4 w-4" />
@@ -383,10 +380,7 @@ export default function PaginaProdutos() {
                             <Button
                               variant="outline"
                               size="sm"
-                              style={{
-                                backgroundColor: "var(--destrutivo)",
-                                color: "var(--destrutivo-texto)",
-                              }}
+                              style={{ backgroundColor: "var(--destrutivo)", color: "var(--destrutivo-texto)" }}
                               className="hover:brightness-110 transition-colors"
                             >
                               <Trash2 className="h-4 w-4" />
@@ -430,10 +424,7 @@ export default function PaginaProdutos() {
                       <Button
                         variant="outline"
                         size="sm"
-                        style={{
-                          backgroundColor: "var(--primaria)",
-                          color: "var(--primaria-texto)",
-                        }}
+                        style={{ backgroundColor: "var(--primaria)", color: "var(--primaria-texto)" }}
                         className="hover:bg-[var(--primaria-hover)] transition-colors"
                       >
                         <Edit className="h-4 w-4" />
@@ -441,10 +432,7 @@ export default function PaginaProdutos() {
                       <Button
                         variant="outline"
                         size="sm"
-                        style={{
-                          backgroundColor: "var(--destrutivo)",
-                          color: "var(--destrutivo-texto)",
-                        }}
+                        style={{ backgroundColor: "var(--destrutivo)", color: "var(--destrutivo-texto)" }}
                         className="hover:brightness-110 transition-colors"
                       >
                         <Trash2 className="h-4 w-4" />

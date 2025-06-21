@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import HeaderPagina from "../HeaderPagina";
 import { Button } from "../ui/button";
 import { Plus, Search, Edit, Trash2, Package } from "lucide-react";
+import { Link } from "react-router-dom";
 import LayoutComSidebar from "../MobileSideBar";
 import {
   Sheet,
@@ -23,8 +24,10 @@ import {
 } from "@/components/ui/select";
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -36,78 +39,40 @@ import {
   TableHead,
   TableCell,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
 
-const produtos = [
-  {
-    id: 1,
-    nome: "VW/ GOL 1.0 2015",
-    codigo: "PRD001",
-    cfop: "5102",
-    valorUnitario: 25000.0,
-    unidade: "UN",
-  },
-  {
-    id: 2,
-    nome: "FIAT/ PALIO 1.0 2016",
-    codigo: "MS002",
-    cfop: "5102",
-    valorUnitario: 30000.0,
-    unidade: "UN",
-  },
-  {
-    id: 3,
-    nome: "GM/ ONIX 1.0 2017",
-    codigo: "CB003",
-    cfop: "5102",
-    valorUnitario: 55000.0,
-    unidade: "UN",
-  },
-];
-
-export default function PaginaProdutos() {
-  const [abrirSheet, setAbrirSheet] = useState(false);
-  const [busca, setBusca] = useState("");
-  const [dadosFormulario, setDadosFormulario] = useState({
+export default function Produtos() {
+  const [abrirSheet, setAbrirSheet] = React.useState(false);
+  const [dadosFormulario, setDadosFormulario] = React.useState({
     nome: "",
     codigo: "",
-    cfop: "",
+    categoria: "",
     valorUnitario: "",
     unidade: "UN",
-    descricao: "",
+    cfop: "",
     ncm: "",
     origem: "0",
+    descricao: "",
   });
+  const [busca, setBusca] = React.useState("");
+  // const [produtos] = React.useState([]);
+  const produtosFiltrados = [];
 
-  const produtosFiltrados = produtos.filter(
-    (produto) =>
-      produto.nome.toLowerCase().includes(busca.toLowerCase()) ||
-      produto.codigo.toLowerCase().includes(busca.toLowerCase())
-  );
+  function aoMudarInput(campo, valor) {
+    setDadosFormulario((anterior) => ({
+      ...anterior,
+      [campo]: valor,
+    }));
+  }
 
-  const aoMudarInput = (campo, valor) => {
-    setDadosFormulario((anterior) => ({ ...anterior, [campo]: valor }));
-  };
-
-  const aoEnviarFormulario = () => {
-    console.log("Dados do produto:", dadosFormulario);
+  function aoEnviarFormulario(e) {
+    e?.preventDefault?.();
     setAbrirSheet(false);
-    setDadosFormulario({
-      nome: "",
-      codigo: "",
-      cfop: "",
-      valorUnitario: "",
-      unidade: "UN",
-      descricao: "",
-      ncm: "",
-      origem: "0",
-    });
-  };
+  }
 
   return (
     <SidebarProvider>
       <LayoutComSidebar>
-        <div className="mt-20 md:mt-10 m-4 space-y-6">
+        <div className="mt-20 md:mt-10 m-4 space-y-6 border-b border-[var(--sidebar-borda)]">
           <HeaderPagina
             titulo="Produtos"
             subtitulo="Gerencie seus produtos cadastrados"
@@ -288,7 +253,7 @@ export default function PaginaProdutos() {
                   placeholder="Buscar por nome, código ou categoria..."
                   value={busca}
                   onChange={(e) => setBusca(e.target.value)}
-                  className="max-w-sm focus:ring-2 focus:ring-[var(--primaria)] hover:ring-2 hover:ring-[var(--primaria)] transition-all"
+                  className="max-w-sm"
                 />
               </div>
             </CardHeader>
@@ -303,14 +268,13 @@ export default function PaginaProdutos() {
                       <TableHead>CFOP</TableHead>
                       <TableHead>Valor Unit.</TableHead>
                       <TableHead>Unidade</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead className="text-right">Ações</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {produtosFiltrados.map((produto) => (
-                      <TableRow
-                        key={produto.id}
-                        className="hover:bg-[var(--suave)] transition-colors"
-                      >
+                      <TableRow key={produto.id}>
                         <TableCell>
                           <div className="flex items-center space-x-2">
                             <Package className="h-4 w-4 text-muted-foreground" />
@@ -335,12 +299,9 @@ export default function PaginaProdutos() {
                         <TableCell>
                           <div className="font-medium">
                             R${" "}
-                            {Number(produto.valorUnitario).toLocaleString(
-                              "pt-BR",
-                              {
-                                minimumFractionDigits: 2,
-                              }
-                            )}
+                            {produto.valorUnitario?.toLocaleString("pt-BR", {
+                              minimumFractionDigits: 2,
+                            })}
                           </div>
                         </TableCell>
                         <TableCell>
@@ -353,42 +314,16 @@ export default function PaginaProdutos() {
                                 ? "default"
                                 : "secondary"
                             }
-                            style={{
-                              backgroundColor:
-                                produto.status === "Ativo"
-                                  ? "var(--primaria)"
-                                  : "var(--secundaria)",
-                              color:
-                                produto.status === "Ativo"
-                                  ? "var(--primaria-texto)"
-                                  : "var(--secundaria-texto)",
-                            }}
                           >
                             {produto.status}
                           </Badge>
                         </TableCell>
                         <TableCell className="text-right">
                           <div className="flex justify-end space-x-2">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              style={{
-                                backgroundColor: "var(--primaria)",
-                                color: "var(--primaria-texto)",
-                              }}
-                              className="hover:bg-[var(--primaria-hover)] transition-colors"
-                            >
+                            <Button variant="outline" size="sm">
                               <Edit className="h-4 w-4" />
                             </Button>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              style={{
-                                backgroundColor: "var(--destrutivo)",
-                                color: "var(--destrutivo-texto)",
-                              }}
-                              className="hover:brightness-110 transition-colors"
-                            >
+                            <Button variant="outline" size="sm">
                               <Trash2 className="h-4 w-4" />
                             </Button>
                           </div>
@@ -403,7 +338,7 @@ export default function PaginaProdutos() {
                 {produtosFiltrados.map((produto) => (
                   <div
                     key={produto.id}
-                    className="border rounded-lg p-3 bg-white shadow hover:bg-[var(--suave)] transition-colors"
+                    className="border rounded-lg p-3 bg-white shadow"
                   >
                     <div className="font-bold">{produto.nome}</div>
                     <div className="text-xs text-muted-foreground mb-2">
@@ -425,28 +360,15 @@ export default function PaginaProdutos() {
                       <span>
                         <b>Unidade:</b> {produto.unidade}
                       </span>
+                      <span>
+                        <b>Status:</b> {produto.status}
+                      </span>
                     </div>
                     <div className="flex gap-2 mt-2">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        style={{
-                          backgroundColor: "var(--primaria)",
-                          color: "var(--primaria-texto)",
-                        }}
-                        className="hover:bg-[var(--primaria-hover)] transition-colors"
-                      >
+                      <Button variant="outline" size="sm">
                         <Edit className="h-4 w-4" />
                       </Button>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        style={{
-                          backgroundColor: "var(--destrutivo)",
-                          color: "var(--destrutivo-texto)",
-                        }}
-                        className="hover:brightness-110 transition-colors"
-                      >
+                      <Button variant="outline" size="sm">
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>

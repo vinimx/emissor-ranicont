@@ -46,6 +46,7 @@ const produtos = [
     cfop: "5102",
     valorUnitario: 25000.0,
     unidade: "UN",
+    status: "Ativo",
   },
   {
     id: 2,
@@ -54,6 +55,7 @@ const produtos = [
     cfop: "5102",
     valorUnitario: 30000.0,
     unidade: "UN",
+    status: "Ativo",
   },
   {
     id: 3,
@@ -62,6 +64,7 @@ const produtos = [
     cfop: "5102",
     valorUnitario: 55000.0,
     unidade: "UN",
+    status: "Inativo",
   },
 ];
 
@@ -107,19 +110,30 @@ export default function PaginaProdutos() {
   return (
     <SidebarProvider>
       <LayoutComSidebar>
-        <div className="mt-20 md:mt-10 m-4 space-y-6">
+        <div
+          className="mt-20 md:mt-10 m-4 space-y-6 border-b border-[var(--sidebar-borda)]"
+          style={{
+            background: "var(--background, #f9f9f9)",
+            minHeight: "100vh",
+          }}
+        >
           <HeaderPagina
             titulo="Produtos"
             subtitulo="Gerencie seus produtos cadastrados"
             acao={
               <Sheet open={abrirSheet} onOpenChange={setAbrirSheet}>
                 <SheetTrigger asChild>
-                  <Button className="bg-[var(--sidebar-primaria)] text-[var(--primaria-texto)] font-medium transition-colors hover:bg-[var(--primaria-hover)] rounded-[var(--raio)]">
-                    <Plus className="h-4 w-4 mr-2" />
+                  <Button
+                    className="bg-[var(--sidebar-primaria)] text-[var(--primaria-texto)] font-medium transition-colors hover:bg-[var(--primaria-hover)] rounded-[var(--raio)] flex items-center gap-2 shadow-md"
+                    style={{
+                      boxShadow: "0 2px 8px 0 var(--sidebar-primaria, #0001)",
+                    }}
+                  >
+                    <Plus className="h-4 w-4" color="var(--primaria-texto)" />
                     Novo Produto
                   </Button>
                 </SheetTrigger>
-                <SheetContent className="w-[290px] sm:w-[540px] p-4">
+                <SheetContent className="w-[290px] sm:w-[540px] p-4 bg-[var(--background)] text-[var(--primaria-texto)]">
                   <SheetHeader>
                     <SheetTitle>Novo Produto</SheetTitle>
                     <SheetDescription>
@@ -134,6 +148,7 @@ export default function PaginaProdutos() {
                         value={dadosFormulario.nome}
                         onChange={(e) => aoMudarInput("nome", e.target.value)}
                         placeholder="Nome do produto"
+                        className="bg-[var(--input-bg)] text-[var(--primaria-texto)] border-[var(--sidebar-borda)]"
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
@@ -146,6 +161,7 @@ export default function PaginaProdutos() {
                             aoMudarInput("codigo", e.target.value)
                           }
                           placeholder="PRD001"
+                          className="bg-[var(--input-bg)] text-[var(--primaria-texto)] border-[var(--sidebar-borda)]"
                         />
                       </div>
                     </div>
@@ -161,6 +177,7 @@ export default function PaginaProdutos() {
                             aoMudarInput("valorUnitario", e.target.value)
                           }
                           placeholder="0,00"
+                          className="bg-[var(--input-bg)] text-[var(--primaria-texto)] border-[var(--sidebar-borda)]"
                         />
                       </div>
                       <div className="space-y-2">
@@ -174,6 +191,7 @@ export default function PaginaProdutos() {
                             aoMudarInput("valorUnitario", e.target.value)
                           }
                           placeholder="0,00"
+                          className="bg-[var(--input-bg)] text-[var(--primaria-texto)] border-[var(--sidebar-borda)]"
                         />
                       </div>
                       <div className="space-y-2">
@@ -184,9 +202,7 @@ export default function PaginaProdutos() {
                             aoMudarInput("unidade", valor)
                           }
                         >
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
+                          <SelectTrigger className="bg-[var(--input-bg)] text-[var(--primaria-texto)] border-[var(--sidebar-borda)]" />
                           <SelectContent>
                             <SelectItem value="UN">Unidade (UN)</SelectItem>
                             <SelectItem value="KG">Quilograma (KG)</SelectItem>
@@ -204,9 +220,7 @@ export default function PaginaProdutos() {
                             aoMudarInput("unidade", valor)
                           }
                         >
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
+                          <SelectTrigger className="bg-[var(--input-bg)] text-[var(--primaria-texto)] border-[var(--sidebar-borda)]" />
                           <SelectContent>
                             <SelectItem value="UN">Unidade (UN)</SelectItem>
                             <SelectItem value="KG">Quilograma (KG)</SelectItem>
@@ -225,6 +239,7 @@ export default function PaginaProdutos() {
                           value={dadosFormulario.cfop}
                           onChange={(e) => aoMudarInput("cfop", e.target.value)}
                           placeholder="5102"
+                          className="bg-[var(--input-bg)] text-[var(--primaria-texto)] border-[var(--sidebar-borda)]"
                         />
                       </div>
                       <div className="space-y-2">
@@ -234,6 +249,7 @@ export default function PaginaProdutos() {
                           value={dadosFormulario.ncm}
                           onChange={(e) => aoMudarInput("ncm", e.target.value)}
                           placeholder="84713012"
+                          className="bg-[var(--input-bg)] text-[var(--primaria-texto)] border-[var(--sidebar-borda)]"
                         />
                       </div>
                     </div>
@@ -243,9 +259,7 @@ export default function PaginaProdutos() {
                         value={dadosFormulario.origem}
                         onValueChange={(valor) => aoMudarInput("origem", valor)}
                       >
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
+                        <SelectTrigger className="bg-[var(--input-bg)] text-[var(--primaria-texto)] border-[var(--sidebar-borda)]" />
                         <SelectContent>
                           <SelectItem value="0">0 - Nacional</SelectItem>
                           <SelectItem value="1">
@@ -261,13 +275,14 @@ export default function PaginaProdutos() {
                   <div className="flex gap-2">
                     <Button
                       onClick={aoEnviarFormulario}
-                      className="h-8 bg-[var(--sidebar-primaria)] text-[var(--primaria-texto)] font-medium transition-colors hover:bg-[var(--primaria-hover)] rounded-[var(--raio)]"
+                      className="h-8 bg-[var(--sidebar-primaria)] text-[var(--primaria-texto)] font-medium transition-colors hover:bg-[var(--primaria-hover)] rounded-[var(--raio)] shadow hover:shadow-lg"
                     >
                       Salvar Produto
                     </Button>
                     <Button
                       variant="outline"
                       onClick={() => setAbrirSheet(false)}
+                      className="h-8 border-[var(--sidebar-primaria)] text-[var(--sidebar-primaria)] hover:bg-[var(--sidebar-primaria)] hover:text-[var(--primaria-texto)] transition-colors rounded-[var(--raio)]"
                     >
                       Cancelar
                     </Button>
@@ -276,26 +291,26 @@ export default function PaginaProdutos() {
               </Sheet>
             }
           />
-          <Card>
+          <Card className="bg-[var(--background)] text-[var(--primaria-texto)] shadow-lg rounded-[var(--raio)]">
             <CardHeader>
               <CardTitle>Lista de Produtos</CardTitle>
               <CardDescription>
                 {produtosFiltrados.length} produto(s) encontrado(s)
               </CardDescription>
               <div className="flex items-center space-x-2">
-                <Search className="h-4 w-4 text-muted-foreground" />
+                <Search className="h-4 w-4 text-[var(--sidebar-primaria)]" />
                 <Input
-                  placeholder="Buscar por nome, código ou categoria..."
+                  placeholder="Buscar por nome ou código..."
                   value={busca}
                   onChange={(e) => setBusca(e.target.value)}
-                  className="max-w-sm focus:ring-2 focus:ring-[var(--primaria)] hover:ring-2 hover:ring-[var(--primaria)] transition-all"
+                  className="max-w-sm bg-[var(--input-bg)] text-[var(--primaria-texto)] border-[var(--sidebar-borda)] placeholder:text-[var(--sidebar-primaria)]"
                 />
               </div>
             </CardHeader>
             <CardContent>
               {/* Tabela para telas médias e grandes */}
               <div className="hidden md:block">
-                <Table>
+                <Table className="bg-[var(--background)] text-[var(--primaria-texto)]">
                   <TableHeader>
                     <TableRow>
                       <TableHead>Produto</TableHead>
@@ -303,22 +318,24 @@ export default function PaginaProdutos() {
                       <TableHead>CFOP</TableHead>
                       <TableHead>Valor Unit.</TableHead>
                       <TableHead>Unidade</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead className="text-right">Ações</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {produtosFiltrados.map((produto) => (
                       <TableRow
                         key={produto.id}
-                        className="hover:bg-[var(--suave)] transition-colors"
+                        className="hover:bg-[var(--sidebar-primaria)]/10 transition-colors"
                       >
                         <TableCell>
                           <div className="flex items-center space-x-2">
-                            <Package className="h-4 w-4 text-muted-foreground" />
+                            <Package
+                              className="h-4 w-4"
+                              color="var(--sidebar-primaria)"
+                            />
                             <div>
                               <div className="font-medium">{produto.nome}</div>
-                              <div className="text-sm text-muted-foreground">
-                                {produto.categoria}
-                              </div>
                             </div>
                           </div>
                         </TableCell>
@@ -348,21 +365,11 @@ export default function PaginaProdutos() {
                         </TableCell>
                         <TableCell>
                           <Badge
-                            variant={
+                            className={
                               produto.status === "Ativo"
-                                ? "default"
-                                : "secondary"
+                                ? "bg-green-100 text-green-800 border-green-300"
+                                : "bg-gray-100 text-gray-600 border-gray-300"
                             }
-                            style={{
-                              backgroundColor:
-                                produto.status === "Ativo"
-                                  ? "var(--primaria)"
-                                  : "var(--secundaria)",
-                              color:
-                                produto.status === "Ativo"
-                                  ? "var(--primaria-texto)"
-                                  : "var(--secundaria-texto)",
-                            }}
                           >
                             {produto.status}
                           </Badge>
@@ -372,24 +379,19 @@ export default function PaginaProdutos() {
                             <Button
                               variant="outline"
                               size="sm"
-                              style={{
-                                backgroundColor: "var(--primaria)",
-                                color: "var(--primaria-texto)",
-                              }}
-                              className="hover:bg-[var(--primaria-hover)] transition-colors"
+                              className="border-[var(--sidebar-primaria)] hover:bg-[var(--sidebar-primaria)] hover:text-[var(--primaria-texto)] transition-colors"
                             >
-                              <Edit className="h-4 w-4" />
+                              <Edit
+                                className="h-4 w-4"
+                                color="var(--sidebar-primaria)"
+                              />
                             </Button>
                             <Button
                               variant="outline"
                               size="sm"
-                              style={{
-                                backgroundColor: "var(--destrutivo)",
-                                color: "var(--destrutivo-texto)",
-                              }}
-                              className="hover:brightness-110 transition-colors"
+                              className="border-red-400 hover:bg-red-500 hover:text-white transition-colors"
                             >
-                              <Trash2 className="h-4 w-4" />
+                              <Trash2 className="h-4 w-4" color="#e53935" />
                             </Button>
                           </div>
                         </TableCell>
@@ -403,13 +405,12 @@ export default function PaginaProdutos() {
                 {produtosFiltrados.map((produto) => (
                   <div
                     key={produto.id}
-                    className="border rounded-lg p-3 bg-white shadow hover:bg-[var(--suave)] transition-colors"
+                    className="border rounded-lg p-3 bg-[var(--background)] shadow hover:shadow-lg transition-shadow"
                   >
-                    <div className="font-bold">{produto.nome}</div>
-                    <div className="text-xs text-muted-foreground mb-2">
-                      {produto.categoria}
+                    <div className="font-bold text-[var(--sidebar-primaria)]">
+                      {produto.nome}
                     </div>
-                    <div className="flex flex-wrap gap-2 text-sm">
+                    <div className="flex flex-wrap gap-2 text-sm mt-1">
                       <span>
                         <b>Código:</b> {produto.codigo}
                       </span>
@@ -425,29 +426,36 @@ export default function PaginaProdutos() {
                       <span>
                         <b>Unidade:</b> {produto.unidade}
                       </span>
+                      <span>
+                        <b>Status:</b>{" "}
+                        <span
+                          className={
+                            produto.status === "Ativo"
+                              ? "text-green-700"
+                              : "text-gray-500"
+                          }
+                        >
+                          {produto.status}
+                        </span>
+                      </span>
                     </div>
                     <div className="flex gap-2 mt-2">
                       <Button
                         variant="outline"
                         size="sm"
-                        style={{
-                          backgroundColor: "var(--primaria)",
-                          color: "var(--primaria-texto)",
-                        }}
-                        className="hover:bg-[var(--primaria-hover)] transition-colors"
+                        className="border-[var(--sidebar-primaria)] hover:bg-[var(--sidebar-primaria)] hover:text-[var(--primaria-texto)] transition-colors"
                       >
-                        <Edit className="h-4 w-4" />
+                        <Edit
+                          className="h-4 w-4"
+                          color="var(--sidebar-primaria)"
+                        />
                       </Button>
                       <Button
                         variant="outline"
                         size="sm"
-                        style={{
-                          backgroundColor: "var(--destrutivo)",
-                          color: "var(--destrutivo-texto)",
-                        }}
-                        className="hover:brightness-110 transition-colors"
+                        className="border-red-400 hover:bg-red-500 hover:text-white transition-colors"
                       >
-                        <Trash2 className="h-4 w-4" />
+                        <Trash2 className="h-4 w-4" color="#e53935" />
                       </Button>
                     </div>
                   </div>

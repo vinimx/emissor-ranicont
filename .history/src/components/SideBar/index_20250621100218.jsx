@@ -1,4 +1,12 @@
-import { Home, Package, Settings, Users, Plus, FileText } from "lucide-react";
+import {
+  BarChart3,
+  Home,
+  Package,
+  Settings,
+  Users,
+  Plus,
+  FileText,
+} from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -20,7 +28,7 @@ const menuItems = [
   { title: "Dashboard", url: "/dashboard", icon: Home },
   { title: "Produtos", url: "/produtos", icon: Package },
   { title: "Clientes", url: "/clientes", icon: Users },
-  { title: "Notas Fiscais", url: "/notas", icon: FileText },
+  { title: "Notas Fiscais", url: "/notas", icon: BarChart3 },
   { title: "Configurações", url: "/configuracoes", icon: Settings },
 ];
 
