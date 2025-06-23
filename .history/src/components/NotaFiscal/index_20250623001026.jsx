@@ -137,11 +137,11 @@ export default function NotaFiscal() {
                     placeholder="Buscar por número, cliente ou documento..."
                     value={busca}
                     onChange={(e) => setBusca(e.target.value)}
-                    className="max-w-sm bg-[var(--input-bg)] text-[var(--texto)] border-[var(--sidebar-borda)] placeholder:text-[var(--texto)]"
+                    className="max-w-sm bg-[var(--input-bg)] text-[var(--primaria-texto)] border-[var(--sidebar-borda)] placeholder:text-[var(--sidebar-primaria)]"
                   />
                 </div>
                 <Select value={filtroStatus} onValueChange={setFiltroStatus}>
-                  <SelectTrigger className="w-[180px] bg-[var(--input-bg)] text-[var(--texto)] border-[var(--sidebar-borda)]">
+                  <SelectTrigger className="w-[180px] bg-[var(--input-bg)] text-[var(--primaria-texto)] border-[var(--sidebar-borda)]">
                     <SelectValue placeholder="Filtrar por status" />
                   </SelectTrigger>
                   <SelectContent>
