@@ -15,7 +15,7 @@ function App() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/produtos" element={<Produtos />} />
       <Route path="/clientes" element={<Clientes />} />
-      <Route path="/notas" element={<NotaFiscal />} />
+      <Route path="/nota" element={<NotaFiscal />} />
     </Routes>
   );
 }

@@ -310,6 +310,8 @@ export default function PaginaProdutos() {
                       <TableHead>CFOP</TableHead>
                       <TableHead>Valor Unit.</TableHead>
                       <TableHead>Unidade</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead className="text-right">Ações</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -324,7 +326,7 @@ export default function PaginaProdutos() {
                             <div>
                               <div className="font-medium">{produto.nome}</div>
                               <div className="text-sm text-muted-foreground">
-                                {produto.categoria}
+                                Código: {produto.codigo}
                               </div>
                             </div>
                           </div>
@@ -355,23 +357,13 @@ export default function PaginaProdutos() {
                         </TableCell>
                         <TableCell>
                           <Badge
-                            variant={
-                              produto.status === "Ativo"
-                                ? "default"
-                                : "secondary"
-                            }
+                            variant="default"
                             style={{
-                              backgroundColor:
-                                produto.status === "Ativo"
-                                  ? "var(--primaria)"
-                                  : "var(--secundaria)",
-                              color:
-                                produto.status === "Ativo"
-                                  ? "var(--primaria-texto)"
-                                  : "var(--secundaria-texto)",
+                              backgroundColor: "var(--primaria)",
+                              color: "var(--primaria-texto)",
                             }}
                           >
-                            {produto.status}
+                            Ativo
                           </Badge>
                         </TableCell>
                         <TableCell className="text-right">
@@ -414,12 +406,9 @@ export default function PaginaProdutos() {
                   >
                     <div className="font-bold">{produto.nome}</div>
                     <div className="text-xs text-muted-foreground mb-2">
-                      {produto.categoria}
+                      Código: {produto.codigo}
                     </div>
                     <div className="flex flex-wrap gap-2 text-sm">
-                      <span>
-                        <b>Código:</b> {produto.codigo}
-                      </span>
                       <span>
                         <b>CFOP:</b> {produto.cfop}
                       </span>
