@@ -119,26 +119,39 @@ export default function PaginaProdutos() {
                     Novo Produto
                   </Button>
                 </SheetTrigger>
-                <SheetContent className="w-[290px] sm:w-[540px] p-4">
-                  <SheetHeader>
-                    <SheetTitle>Novo Produto</SheetTitle>
-                    <SheetDescription>
+                <SheetContent className="w-[290px] sm:w-[540px] p-4 bg-[var(--cartao)] border-l border-[var(--borda)]">
+                  <SheetHeader className="pb-6">
+                    <SheetTitle className="text-[var(--texto)] text-xl font-semibold">
+                      Novo Produto
+                    </SheetTitle>
+                    <SheetDescription className="text-[var(--suave-texto)]">
                       Preencha os dados do produto para cadastrá-lo no sistema.
                     </SheetDescription>
                   </SheetHeader>
-                  <div className="grid gap-4 py-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="nome">Nome do Produto</Label>
+                  <div className="grid gap-6 py-4">
+                    <div className="space-y-3">
+                      <Label
+                        htmlFor="nome"
+                        className="text-[var(--texto)] font-medium"
+                      >
+                        Nome do Produto
+                      </Label>
                       <Input
                         id="nome"
                         value={dadosFormulario.nome}
                         onChange={(e) => aoMudarInput("nome", e.target.value)}
                         placeholder="Nome do produto"
+                        className="border-[var(--borda)] bg-[var(--cartao)] text-[var(--texto)] placeholder:text-[var(--suave-texto)] focus:ring-2 focus:ring-[var(--primaria)] focus:border-[var(--primaria)] hover:border-[var(--primaria)] transition-all"
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="codigo">Código</Label>
+                      <div className="space-y-3">
+                        <Label
+                          htmlFor="codigo"
+                          className="text-[var(--texto)] font-medium"
+                        >
+                          Código
+                        </Label>
                         <Input
                           id="codigo"
                           value={dadosFormulario.codigo}
@@ -146,12 +159,18 @@ export default function PaginaProdutos() {
                             aoMudarInput("codigo", e.target.value)
                           }
                           placeholder="PRD001"
+                          className="border-[var(--borda)] bg-[var(--cartao)] text-[var(--texto)] placeholder:text-[var(--suave-texto)] focus:ring-2 focus:ring-[var(--primaria)] focus:border-[var(--primaria)] hover:border-[var(--primaria)] transition-all"
                         />
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="valorUnitario">Preço Comercial</Label>
+                      <div className="space-y-3">
+                        <Label
+                          htmlFor="valorUnitario"
+                          className="text-[var(--texto)] font-medium"
+                        >
+                          Preço Comercial
+                        </Label>
                         <Input
                           id="valorUnitario"
                           type="number"
@@ -161,10 +180,16 @@ export default function PaginaProdutos() {
                             aoMudarInput("valorUnitario", e.target.value)
                           }
                           placeholder="0,00"
+                          className="border-[var(--borda)] bg-[var(--cartao)] text-[var(--texto)] placeholder:text-[var(--suave-texto)] focus:ring-2 focus:ring-[var(--primaria)] focus:border-[var(--primaria)] hover:border-[var(--primaria)] transition-all"
                         />
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="valorUnitario">Preço Tributável</Label>
+                      <div className="space-y-3">
+                        <Label
+                          htmlFor="valorUnitario"
+                          className="text-[var(--texto)] font-medium"
+                        >
+                          Preço Tributável
+                        </Label>
                         <Input
                           id="valorUnitario"
                           type="number"
@@ -174,100 +199,190 @@ export default function PaginaProdutos() {
                             aoMudarInput("valorUnitario", e.target.value)
                           }
                           placeholder="0,00"
+                          className="border-[var(--borda)] bg-[var(--cartao)] text-[var(--texto)] placeholder:text-[var(--suave-texto)] focus:ring-2 focus:ring-[var(--primaria)] focus:border-[var(--primaria)] hover:border-[var(--primaria)] transition-all"
                         />
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="unidade">Unidade Comercial</Label>
+                      <div className="space-y-3">
+                        <Label
+                          htmlFor="unidade"
+                          className="text-[var(--texto)] font-medium"
+                        >
+                          Unidade Comercial
+                        </Label>
                         <Select
                           value={dadosFormulario.unidade}
                           onValueChange={(valor) =>
                             aoMudarInput("unidade", valor)
                           }
                         >
-                          <SelectTrigger>
+                          <SelectTrigger className="border-[var(--borda)] bg-[var(--cartao)] text-[var(--texto)] hover:border-[var(--primaria)] focus:ring-2 focus:ring-[var(--primaria)] focus:border-[var(--primaria)] transition-all">
                             <SelectValue />
                           </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="UN">Unidade (UN)</SelectItem>
-                            <SelectItem value="KG">Quilograma (KG)</SelectItem>
-                            <SelectItem value="M">Metro (M)</SelectItem>
-                            <SelectItem value="L">Litro (L)</SelectItem>
-                            <SelectItem value="CX">Caixa (CX)</SelectItem>
+                          <SelectContent className="bg-[var(--cartao)] border-[var(--borda)]">
+                            <SelectItem
+                              value="UN"
+                              className="hover:bg-[var(--suave)] text-[var(--texto)]"
+                            >
+                              Unidade (UN)
+                            </SelectItem>
+                            <SelectItem
+                              value="KG"
+                              className="hover:bg-[var(--suave)] text-[var(--texto)]"
+                            >
+                              Quilograma (KG)
+                            </SelectItem>
+                            <SelectItem
+                              value="M"
+                              className="hover:bg-[var(--suave)] text-[var(--texto)]"
+                            >
+                              Metro (M)
+                            </SelectItem>
+                            <SelectItem
+                              value="L"
+                              className="hover:bg-[var(--suave)] text-[var(--texto)]"
+                            >
+                              Litro (L)
+                            </SelectItem>
+                            <SelectItem
+                              value="CX"
+                              className="hover:bg-[var(--suave)] text-[var(--texto)]"
+                            >
+                              Caixa (CX)
+                            </SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="unidade">Unidade Tributável</Label>
+                      <div className="space-y-3">
+                        <Label
+                          htmlFor="unidade"
+                          className="text-[var(--texto)] font-medium"
+                        >
+                          Unidade Tributável
+                        </Label>
                         <Select
                           value={dadosFormulario.unidade}
                           onValueChange={(valor) =>
                             aoMudarInput("unidade", valor)
                           }
                         >
-                          <SelectTrigger>
+                          <SelectTrigger className="border-[var(--borda)] bg-[var(--cartao)] text-[var(--texto)] hover:border-[var(--primaria)] focus:ring-2 focus:ring-[var(--primaria)] focus:border-[var(--primaria)] transition-all">
                             <SelectValue />
                           </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="UN">Unidade (UN)</SelectItem>
-                            <SelectItem value="KG">Quilograma (KG)</SelectItem>
-                            <SelectItem value="M">Metro (M)</SelectItem>
-                            <SelectItem value="L">Litro (L)</SelectItem>
-                            <SelectItem value="CX">Caixa (CX)</SelectItem>
+                          <SelectContent className="bg-[var(--cartao)] border-[var(--borda)]">
+                            <SelectItem
+                              value="UN"
+                              className="hover:bg-[var(--suave)] text-[var(--texto)]"
+                            >
+                              Unidade (UN)
+                            </SelectItem>
+                            <SelectItem
+                              value="KG"
+                              className="hover:bg-[var(--suave)] text-[var(--texto)]"
+                            >
+                              Quilograma (KG)
+                            </SelectItem>
+                            <SelectItem
+                              value="M"
+                              className="hover:bg-[var(--suave)] text-[var(--texto)]"
+                            >
+                              Metro (M)
+                            </SelectItem>
+                            <SelectItem
+                              value="L"
+                              className="hover:bg-[var(--suave)] text-[var(--texto)]"
+                            >
+                              Litro (L)
+                            </SelectItem>
+                            <SelectItem
+                              value="CX"
+                              className="hover:bg-[var(--suave)] text-[var(--texto)]"
+                            >
+                              Caixa (CX)
+                            </SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="cfop">CFOP</Label>
+                      <div className="space-y-3">
+                        <Label
+                          htmlFor="cfop"
+                          className="text-[var(--texto)] font-medium"
+                        >
+                          CFOP
+                        </Label>
                         <Input
                           id="cfop"
                           value={dadosFormulario.cfop}
                           onChange={(e) => aoMudarInput("cfop", e.target.value)}
                           placeholder="5102"
+                          className="border-[var(--borda)] bg-[var(--cartao)] text-[var(--texto)] placeholder:text-[var(--suave-texto)] focus:ring-2 focus:ring-[var(--primaria)] focus:border-[var(--primaria)] hover:border-[var(--primaria)] transition-all"
                         />
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="ncm">NCM</Label>
+                      <div className="space-y-3">
+                        <Label
+                          htmlFor="ncm"
+                          className="text-[var(--texto)] font-medium"
+                        >
+                          NCM
+                        </Label>
                         <Input
                           id="ncm"
                           value={dadosFormulario.ncm}
                           onChange={(e) => aoMudarInput("ncm", e.target.value)}
                           placeholder="84713012"
+                          className="border-[var(--borda)] bg-[var(--cartao)] text-[var(--texto)] placeholder:text-[var(--suave-texto)] focus:ring-2 focus:ring-[var(--primaria)] focus:border-[var(--primaria)] hover:border-[var(--primaria)] transition-all"
                         />
                       </div>
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="origem">Origem</Label>
+                    <div className="space-y-3">
+                      <Label
+                        htmlFor="origem"
+                        className="text-[var(--texto)] font-medium"
+                      >
+                        Origem
+                      </Label>
                       <Select
                         value={dadosFormulario.origem}
                         onValueChange={(valor) => aoMudarInput("origem", valor)}
                       >
-                        <SelectTrigger>
+                        <SelectTrigger className="border-[var(--borda)] bg-[var(--cartao)] text-[var(--texto)] hover:border-[var(--primaria)] focus:ring-2 focus:ring-[var(--primaria)] focus:border-[var(--primaria)] transition-all">
                           <SelectValue />
                         </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="0">0 - Nacional</SelectItem>
-                          <SelectItem value="1">
+                        <SelectContent className="bg-[var(--cartao)] border-[var(--borda)]">
+                          <SelectItem
+                            value="0"
+                            className="hover:bg-[var(--suave)] text-[var(--texto)]"
+                          >
+                            0 - Nacional
+                          </SelectItem>
+                          <SelectItem
+                            value="1"
+                            className="hover:bg-[var(--suave)] text-[var(--texto)]"
+                          >
                             1 - Estrangeira - Importação direta
                           </SelectItem>
-                          <SelectItem value="2">
+                          <SelectItem
+                            value="2"
+                            className="hover:bg-[var(--suave)] text-[var(--texto)]"
+                          >
                             2 - Estrangeira - Adquirida no mercado interno
                           </SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-3 pt-6 border-t border-[var(--borda)]">
                     <Button
                       onClick={aoEnviarFormulario}
-                      className="h-8 bg-[var(--sidebar-primaria)] text-[var(--primaria-texto)] font-medium transition-colors hover:bg-[var(--primaria-hover)] rounded-[var(--raio)]"
+                      className="flex-1 bg-[var(--primaria)] text-[var(--primaria-texto)] font-medium transition-all hover:bg-[var(--primaria-hover)] hover:shadow-lg hover:scale-[1.02] rounded-[var(--raio)]"
                     >
                       Salvar Produto
                     </Button>
                     <Button
                       variant="outline"
                       onClick={() => setAbrirSheet(false)}
+                      className="border-[var(--borda)] text-[var(--texto)] hover:bg-[var(--suave)] hover:border-[var(--primaria)] transition-all"
                     >
                       Cancelar
                     </Button>
@@ -303,6 +418,8 @@ export default function PaginaProdutos() {
                       <TableHead>CFOP</TableHead>
                       <TableHead>Valor Unit.</TableHead>
                       <TableHead>Unidade</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead className="text-right">Ações</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -317,7 +434,7 @@ export default function PaginaProdutos() {
                             <div>
                               <div className="font-medium">{produto.nome}</div>
                               <div className="text-sm text-muted-foreground">
-                                {produto.categoria}
+                                Código: {produto.codigo}
                               </div>
                             </div>
                           </div>
@@ -348,23 +465,13 @@ export default function PaginaProdutos() {
                         </TableCell>
                         <TableCell>
                           <Badge
-                            variant={
-                              produto.status === "Ativo"
-                                ? "default"
-                                : "secondary"
-                            }
+                            variant="default"
                             style={{
-                              backgroundColor:
-                                produto.status === "Ativo"
-                                  ? "var(--primaria)"
-                                  : "var(--secundaria)",
-                              color:
-                                produto.status === "Ativo"
-                                  ? "var(--primaria-texto)"
-                                  : "var(--secundaria-texto)",
+                              backgroundColor: "var(--primaria)",
+                              color: "var(--primaria-texto)",
                             }}
                           >
-                            {produto.status}
+                            Ativo
                           </Badge>
                         </TableCell>
                         <TableCell className="text-right">
@@ -407,12 +514,9 @@ export default function PaginaProdutos() {
                   >
                     <div className="font-bold">{produto.nome}</div>
                     <div className="text-xs text-muted-foreground mb-2">
-                      {produto.categoria}
+                      Código: {produto.codigo}
                     </div>
                     <div className="flex flex-wrap gap-2 text-sm">
-                      <span>
-                        <b>Código:</b> {produto.codigo}
-                      </span>
                       <span>
                         <b>CFOP:</b> {produto.cfop}
                       </span>
