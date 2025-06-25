@@ -129,13 +129,13 @@ export default function NovaNotaFiscal() {
   return (
     <SidebarProvider>
       <LayoutComSidebar>
-        <div className="mt-20 md:mt-10 m-2 sm:m-4 md:mr-7 lg:mr-7 space-y-4 sm:space-y-6">
+        <div className="mt-20 md:mt-10 m-2 sm:m-4 lg:mr-7 space-y-4 sm:space-y-6">
           {" "}
           <HeaderPagina
             titulo="Emitir Nova NF-e"
             subtitulo="Preencha os dados para emitir uma nova nota fiscal eletrônica"
             acao={
-              <div className="flex gap-2 flex-wrap lg:flex-row md:flex-col">
+              <div className="flex gap-2 flex-wrap">
                 <Button
                   variant="outline"
                   className="cursor-pointer hover:bg-[var(--secundaria)] hover:text-[var(--texto)] transition-colors border border-[var(--sidebar-borda)]"
@@ -150,7 +150,7 @@ export default function NovaNotaFiscal() {
                   className="bg-[var(--sidebar-primaria)] text-[var(--primaria-texto)] font-medium transition-all hover:bg-[var(--primaria-hover)] hover:scale-105 rounded-[var(--raio)] shadow"
                 >
                   <Link to="#">
-                    <FileText className="h-4 w-4" />
+                    <FileText className="h-4 w-4 mr-2" />
                     Emitir NF-e
                   </Link>
                 </Button>
@@ -158,7 +158,7 @@ export default function NovaNotaFiscal() {
             }
           />
           <div className="grid gap-6 md:grid-cols-2 md:gap-3 lg:grid-cols-3">
-            <div className="lg:col-span-2 md:col-span-3 space-y-6">
+            <div className="lg:col-span-2 md:col-span-4 space-y-6">
               {/* Dados da Nota */}
               <Card className="overflow-hidden shadow-lg hover:shadow-2xl border border-[var(--sidebar-borda)] bg-[var(--sidebar-fundo)]">
                 <CardHeader>
@@ -483,7 +483,7 @@ export default function NovaNotaFiscal() {
                         value={observacoes}
                         onChange={(e) => setObservacoes(e.target.value)}
                         rows={3}
-                        className="w-full rounded-md border border-[var(--sidebar-borda)] bg-background px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[var(--sidebar-primaria)] transition"
+                        className="w-full md:max-w-xs rounded-md border border-[var(--sidebar-borda)] bg-background px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[var(--sidebar-primaria)] transition"
                       />
                     </div>
                   </div>
@@ -505,8 +505,8 @@ export default function NovaNotaFiscal() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="flex flex-col gap-4 md:items-start">
-                    <div className="flex-1 space-y-2 md:w-full">
+                  <div className="flex flex-col md:flex-row gap-4 items-end">
+                    <div className="flex-1 space-y-2">
                       <Label
                         htmlFor="produto"
                         className="flex items-center gap-1"
@@ -576,7 +576,7 @@ export default function NovaNotaFiscal() {
                         </div>
                       )}
                     </div>
-                    <div className="w-full space-y-2">
+                    <div className="w-full md:w-20 space-y-2">
                       <Label
                         htmlFor="quantidade"
                         className="flex items-center gap-1"
@@ -593,7 +593,7 @@ export default function NovaNotaFiscal() {
                         className="w-full border-[var(--sidebar-borda)] focus:ring-2 focus:ring-[var(--sidebar-primaria)] transition"
                       />
                     </div>
-                    <div className="w-full space-y-2">
+                    <div className="w-full md:w-24 space-y-2">
                       <Label
                         htmlFor="unidade"
                         className="flex items-center gap-1"
@@ -614,7 +614,7 @@ export default function NovaNotaFiscal() {
                         </SelectContent>
                       </Select>
                     </div>
-                    <div className="w-full space-y-2">
+                    <div className="w-full md:w-24 space-y-2">
                       <Label
                         htmlFor="valorUnitario"
                         className="flex items-center gap-1"
@@ -648,7 +648,7 @@ export default function NovaNotaFiscal() {
                         className="w-full border-[var(--sidebar-borda)] focus:ring-2 focus:ring-[var(--sidebar-primaria)] transition"
                       />
                     </div>
-                    <div className="w-full space-y-2">
+                    <div className="w-full md:w-24 space-y-2">
                       <Label
                         htmlFor="desconto"
                         className="flex items-center gap-1"
@@ -791,7 +791,7 @@ export default function NovaNotaFiscal() {
             </div>
 
             {/* Resumo */}
-            <div className="space-y-6 md:col-span-2 lg:col-span-1">
+            <div className="space-y-6">
               <Card className="shadow-lg hover:shadow-2xl border border-[var(--sidebar-borda)] bg-[var(--sidebar-fundo)]">
                 <CardHeader>
                   <CardTitle

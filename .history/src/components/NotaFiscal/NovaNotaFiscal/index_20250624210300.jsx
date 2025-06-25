@@ -135,7 +135,7 @@ export default function NovaNotaFiscal() {
             titulo="Emitir Nova NF-e"
             subtitulo="Preencha os dados para emitir uma nova nota fiscal eletrônica"
             acao={
-              <div className="flex gap-2 flex-wrap lg:flex-row md:flex-col">
+              <div className="flex gap-2 flex-nowrap">
                 <Button
                   variant="outline"
                   className="cursor-pointer hover:bg-[var(--secundaria)] hover:text-[var(--texto)] transition-colors border border-[var(--sidebar-borda)]"

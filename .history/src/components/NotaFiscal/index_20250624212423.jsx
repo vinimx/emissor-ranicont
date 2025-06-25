@@ -2,6 +2,7 @@ import { Plus, Search, FileText, Eye, Download, X } from "lucide-react";
 import HeaderPagina from "../HeaderPagina";
 import LayoutComSidebar from "../MobileSideBar";
 import { SidebarProvider } from "../ui/sidebar";
+import { Sheet, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
 import { useState } from "react";
 import {

@@ -129,13 +129,13 @@ export default function NovaNotaFiscal() {
   return (
     <SidebarProvider>
       <LayoutComSidebar>
-        <div className="mt-20 md:mt-10 m-2 sm:m-4 md:mr-7 lg:mr-7 space-y-4 sm:space-y-6">
+        <div className="mt-20 md:mt-10 m-2 sm:m-4 lg:mr-7 space-y-4 sm:space-y-6">
           {" "}
           <HeaderPagina
             titulo="Emitir Nova NF-e"
             subtitulo="Preencha os dados para emitir uma nova nota fiscal eletrônica"
             acao={
-              <div className="flex gap-2 flex-wrap lg:flex-row md:flex-col">
+              <div className="flex gap-2 flex-wrap">
                 <Button
                   variant="outline"
                   className="cursor-pointer hover:bg-[var(--secundaria)] hover:text-[var(--texto)] transition-colors border border-[var(--sidebar-borda)]"
@@ -791,7 +791,7 @@ export default function NovaNotaFiscal() {
             </div>
 
             {/* Resumo */}
-            <div className="space-y-6 md:col-span-2 lg:col-span-1">
+            <div className="space-y-6 md:col-span-2">
               <Card className="shadow-lg hover:shadow-2xl border border-[var(--sidebar-borda)] bg-[var(--sidebar-fundo)]">
                 <CardHeader>
                   <CardTitle
