@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+:root {
+  --fundo: #ffffff;
+  --texto: #0f172a;
+  --cartao: #ffffff;
+  --cartao-texto: #0f172a;
+  --popover: #ffffff;
+  --popover-texto: #0f172a;
+  --primaria: #2563eb;
+  --primaria-texto: #f1f5f9;
+  --secundaria: #f1f5f9;
+  --secundaria-texto: #0f172a;
+  --suave: #f1f5f9;
+  --suave-texto: #64748b;
+  --destaque: #f1f5f9;
+  --destaque-texto: #0f172a;
+  --destrutivo: #ef4444;
+  --destrutivo-texto: #f1f5f9;
+  --borda: #e2e8f0;
+  --entrada: #e2e8f0;
+  --anel: #2563eb;
+  --raio: 0.5rem;
+  --grafico-1: #fa8231;
+  --grafico-2: #269e91;
+  --grafico-3: #395b6b;
+  --grafico-4: #ffd166;
+  --grafico-5: #ffb366;
+
+  /* Variáveis da barra lateral */
+  --sidebar-fundo: #fafafa;
+  --sidebar-texto: #3d3d3d;
+  --sidebar-primaria: #191919;
+  --sidebar-primaria-texto: #fafafa;
+  --sidebar-destaque: #f4f4f4;
+  --sidebar-destaque-texto: #191919;
+  --sidebar-borda: #e6e6e6;
+  --sidebar-anel: #3b82f6;
+}
