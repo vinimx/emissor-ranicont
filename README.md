@@ -98,6 +98,6 @@ Todo o conteúdo (ex: termos, ícones e fluxos) foi pensado com base na rotina d
 
 ## 📬 Contato
 
-Para dúvidas, sugestões ou contribuições, entre em contato via GitHub ou envie um e-mail para `seuemail@exemplo.com`.
+Para dúvidas, sugestões ou contribuições, entre em contato via GitHub.
 
 ---
